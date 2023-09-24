@@ -2,9 +2,9 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="w-screen bg-primary text-white" id="about">
-      <div className="w-[70%] mx-auto mb-80 h-[80%] flex flex-col items-center justify-center">
-        <h1 className="text-3xl mb-10 font-semibold text-center md:text-4xl">ABOUT ME</h1>
+    <div className="w-[100%] bg-white dark:bg-primary dark:text-white" id="about">
+      <div className="w-[85%] mx-auto pb-20 md:pb-48 flex flex-col items-center justify-center md:w-[50%]">
+        <h1 className="text-3xl mb-16 font-bold text-center md:text-4xl">ABOUT ME</h1>
         <div>
           <p className="text-xl">
             Soy un estudiante en el último ciclo de mi carrera universitaria, apasionado por el desarrollo de software y autodidacta en constante búsqueda de

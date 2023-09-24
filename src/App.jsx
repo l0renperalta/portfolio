@@ -11,16 +11,14 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="h-screen">
-      <div className="bg-primary ">
-        <Navbar />
-        <Header />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <Header />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+    </>
   );
 }
 
