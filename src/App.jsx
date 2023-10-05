@@ -1,6 +1,3 @@
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-
 import './App.css';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
@@ -11,14 +8,14 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <>
+    <div className="w-[100%] lightBackground dark:darkBackground dark:text-white">
       <Navbar />
       <Header />
       <About />
       <Skills />
       <Projects />
       <Contact />
-    </>
+    </div>
   );
 }
 

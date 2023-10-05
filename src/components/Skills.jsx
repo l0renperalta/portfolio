@@ -13,12 +13,16 @@ import redux from '../images/skills/redux.png';
 import tailwind from '../images/skills/tailwind.png';
 import java from '../images/skills/java.png';
 import github from '../images/skills/github.png';
+import { useTranslation } from 'react-i18next';
 
 const Skills = () => {
+  const { t } = useTranslation();
+  const skills = t('skills', { returnObjects: true });
+
   return (
-    <div className="w-[100%] bg-white dark:bg-primary dark:text-white" id="skills">
+    <div className="w-[100%]" id="skills">
       <div className="w-[70%] mx-auto pb-20 md:pb-48 flex flex-col items-center justify-center">
-        <h1 className="text-3xl mb-16 font-bold text-center md:text-4xl">SKILLS</h1>
+        <h1 className="text-3xl mb-16 font-bold text-center md:text-4xl">{skills.title}</h1>
         <div className="grid grid-cols-2 md:grid-cols-5">
           <TechElement element={html} text={'html'} />
           <TechElement element={css3} text={'css3'} />

@@ -2,9 +2,34 @@ import React from 'react';
 import useDarkMode from '../hooks/useDarkmode';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
+import 'flag-icon-css/css/flag-icons.min.css';
+import i18next from 'i18next';
+import cookies from 'js-cookie';
+import { useTranslation } from 'react-i18next';
+
+const languages = [
+  {
+    code: 'en',
+    name: 'English',
+    country_code: 'gb',
+  },
+  {
+    code: 'es',
+    name: 'Español',
+    country_code: 'es',
+  },
+];
+
 const NavBar = () => {
+  const currentLanguageCode = cookies.get('i18next') || 'en';
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+
+  const { t } = useTranslation();
+
+  const navbar = t('navbar', { returnObjects: true });
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-primary">
+    <nav className="">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-start mx-auto p-4 md:justify-center">
         <button
           data-collapse-toggle="navbar-default"
@@ -19,31 +44,40 @@ const NavBar = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-primary dark:border-gray-700">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li className="my-0 mx-5">
               <a className="link" href="#">
-                Home
+                {navbar[0]}
               </a>
             </li>
             <li className="my-0 mx-5">
               <a className="link" href="#about">
-                About
+                {navbar[1]}
               </a>
             </li>
             <li className="my-0 mx-5">
               <a className="link" href="#skills">
-                Skills
+                {navbar[2]}
               </a>
             </li>
             <li className="my-0 mx-5">
               <a className="link" href="#projects">
-                Projects
+                {navbar[3]}
               </a>
             </li>
             <li className="my-0 mx-5">
               <a className="link" href="#contact">
-                Contact
+                {navbar[4]}
               </a>
+            </li>
+            <li className="my-0 mx-5 flex gap-3">
+              {languages?.map((language) => (
+                <li className="dropdown" style={{ cursor: 'pointer' }} onClick={() => i18next.changeLanguage(language.code)} key={language.country_code}>
+                  <a>
+                    <span className={`flag-icon flag-icon-${language.country_code}`}></span>
+                  </a>
+                </li>
+              ))}
             </li>
             <ToggleTheme />
           </ul>
