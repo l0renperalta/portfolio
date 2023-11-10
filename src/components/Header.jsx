@@ -11,7 +11,7 @@ const Header = () => {
         <div className="flex flex-col items-center justify-center">
           <p className="mt-5 font-normal md:text-xl">{header[0]}</p>
           <h1 className="my-5 font-bold text-3xl md:text-6xl">{header[1]}</h1>
-          <h3 className="font-light md:text-xl">{header[2]}</h3>
+          <h3 className="font-normal md:text-xl">{header[2]}</h3>
         </div>
         <div>
           <img src={headerImage} alt="" className="w-auto" />
