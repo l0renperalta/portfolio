@@ -57,7 +57,7 @@ const Projects = () => {
               </button>
             </a>
           </div>
-          <div className="m-6 p-6 rounded-xl bg-lighTheme-300 dark:bg-darkTheme-950">
+          {/* <div className="m-6 p-6 rounded-xl bg-lighTheme-300 dark:bg-darkTheme-950">
             <h3 className="font-bold text-lg">{projects.titles[2]}</h3>
             <img src={project3} alt="" className="w-auto my-4" onClick={() => openImageViewer(2)} />
             <ul className="m-3">
@@ -70,7 +70,7 @@ const Projects = () => {
                 {projects.titles[3]}
               </button>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
