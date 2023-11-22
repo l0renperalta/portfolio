@@ -39,7 +39,8 @@ export default {
       },
     },
     fontFamily: {
-      poppins: ['Poppins'],
+      'poppins': ['Poppins'],
+      'space-mono': ['Space Mono'],
     },
   },
   plugins: [],

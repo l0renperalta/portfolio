@@ -56,7 +56,7 @@ const Contact = () => {
         <h1 className="text-3xl mb-16 font-bold text-center md:text-4xl" onClick={() => form.target.reset()}>
           {contact.title}
         </h1>
-        <div className="w-[75%] md:w-[50%] pb-20 md:pb-48 mx-auto grid sm:grid-cols-1 md:grid-cols-2 text-center content-center">
+        <div className="w-[75%] md:w-[70%] pb-20 md:pb-48 mx-auto grid sm:grid-cols-1 md:grid-cols-2 text-center content-center">
           <div>
             <img src={contactImg} alt="" className="w-auto" />
           </div>

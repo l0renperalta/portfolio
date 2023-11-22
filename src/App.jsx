@@ -8,7 +8,7 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="w-[100%] lightBackground dark:darkBackground lightText darkText">
+    <div className="w-[100%] font-space-mono lightBackground dark:darkBackground lightText darkText">
       <Navbar />
       <Header />
       <About />
