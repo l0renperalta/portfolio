@@ -1,5 +1,7 @@
 import headerImage from '../images/header.png';
 import { useTranslation } from 'react-i18next';
+import { FaGithub } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -12,6 +14,14 @@ const Header = () => {
           <p className="mt-5 font-normal md:text-xl">{header[0]}</p>
           <h1 className="my-5 font-bold text-3xl md:text-5xl">{header[1]}</h1>
           <h3 className="font-normal md:text-xl">{header[2]}</h3>
+          <div className="flex gap-4">
+            <a href="https://github.com/l0renperalta">
+              <FaGithub size={30} className="my-3" />
+            </a>
+            <a href="https://leetcode.com/stinkoala/">
+              <SiLeetcode size={30} className="my-3" />
+            </a>
+          </div>
         </div>
         <div>
           <img src={headerImage} alt="" className="w-auto" />
