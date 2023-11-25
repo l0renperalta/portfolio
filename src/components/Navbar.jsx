@@ -45,31 +45,13 @@ const NavBar = () => {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <li className="my-0">
-              <a className="link" href="#">
-                {navbar[0]}
-              </a>
-            </li>
-            <li className="my-0">
-              <a className="link" href="#about">
-                {navbar[1]}
-              </a>
-            </li>
-            <li className="my-0">
-              <a className="link" href="#skills">
-                {navbar[2]}
-              </a>
-            </li>
-            <li className="my-0">
-              <a className="link" href="#projects">
-                {navbar[3]}
-              </a>
-            </li>
-            <li className="my-0">
-              <a className="link" href="#contact">
-                {navbar[4]}
-              </a>
-            </li>
+            {navbar.map((e, index) => (
+              <li className="my-0" key={index}>
+                <a className="link" href={`#${e.toLowerCase()}`}>
+                  {e}
+                </a>
+              </li>
+            ))}
             <li className="my-0 flex gap-3">
               {languages?.map((language) => (
                 <li className="dropdown" style={{ cursor: 'pointer' }} onClick={() => i18next.changeLanguage(language.code)} key={language.country_code}>
