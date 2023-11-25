@@ -14,12 +14,17 @@ const Header = () => {
           <p className="mt-5 font-normal md:text-xl">{header[0]}</p>
           <h1 className="my-5 font-bold text-3xl md:text-5xl">{header[1]}</h1>
           <h3 className="font-normal md:text-xl">{header[2]}</h3>
-          <div className="flex gap-4">
+          <div className="flex my-4 gap-4 items-center">
             <a href="https://github.com/l0renperalta">
               <FaGithub size={30} className="my-3" />
             </a>
             <a href="https://leetcode.com/stinkoala/">
               <SiLeetcode size={30} className="my-3" />
+            </a>
+            <a href="https://drive.google.com/file/d/1SVJ9eTF_0CsGO-uyw9e6pnmuBLYVhTZ9/view?usp=drive_link">
+              <button className="bg-lighTheme-400 hover:bg-lighTheme-500 dark:bg-darkTheme-700 dark:hover:bg-darkTheme-600 text-white font-bold py-2 px-4 rounded">
+                Download CV
+              </button>
             </a>
           </div>
         </div>
