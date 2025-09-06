@@ -1,61 +1,39 @@
-import html from '../images/skills/html.png';
-import css3 from '../images/skills/css3.png';
-import js from '../images/skills/js.png';
-import aws from '../images/skills/aws.png';
-import bootstrap from '../images/skills/bootstrap.png';
-import express from '../images/skills/express.png';
-import git from '../images/skills/git.png';
-import github from '../images/skills/github.png';
-import java from '../images/skills/java.png';
-import mongodb from '../images/skills/mongodb.png';
-import mysql from '../images/skills/mysql.png';
-import nodejs from '../images/skills/nodejs.png';
-import postgreesql from '../images/skills/postgreesql.png';
-import python from '../images/skills/python.png';
-import react from '../images/skills/react.png';
-import redux from '../images/skills/redux.png';
-import tailwind from '../images/skills/tailwind.png';
-import wordpress from '../images/skills/wordpress.png';
 import { useTranslation } from 'react-i18next';
+import Container from './Container';
+import { SKILLS_DATA } from '../data/skillsData';
 
 const Skills = () => {
   const { t } = useTranslation();
   const skills = t('skills', { returnObjects: true });
 
   return (
-    <div className="w-[100%]" id="skills">
-      <div className="skillsContainer">
-        <h1 className="text-3xl mb-16 font-bold text-center md:text-4xl">{skills.title}</h1>
-        <div className="skillsGroup">
-          <TechElement element={html} text={'html'} />
-          <TechElement element={css3} text={'css3'} />
-          <TechElement element={js} text={'js'} />
-          <TechElement element={aws} text={'aws'} />
-          <TechElement element={bootstrap} text={'bootstrap'} />
-          <TechElement element={express} text={'express'} />
-          <TechElement element={git} text={'git'} />
-          <TechElement element={github} text={'github'} />
-          <TechElement element={java} text={'java'} />
-          <TechElement element={mongodb} text={'mongodb'} />
-          <TechElement element={mysql} text={'mysql'} />
-          <TechElement element={nodejs} text={'nodejs'} />
-          <TechElement element={postgreesql} text={'postgreesql'} />
-          <TechElement element={python} text={'python'} />
-          <TechElement element={react} text={'react'} />
-          <TechElement element={redux} text={'redux'} />
-          <TechElement element={tailwind} text={'tailwind'} />
-          <TechElement element={wordpress} text={'wordpress'} />
-        </div>
+    <Container fullHeight centered title={skills.title} className="mb-24">
+      <div
+        id={skills.navbarId}
+        className="scroll-mt-40 md:scroll-mt-52 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 p-4"
+      >
+        {SKILLS_DATA.map((skill) => (
+          <TechElement
+            key={skill.id}
+            element={skill.image}
+            text={skill.name}
+            altText={skill.altText}
+          />
+        ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
-const TechElement = ({ element, text }) => {
+const TechElement = ({ element, text, altText = '' }) => {
   return (
-    <div className="skill">
-      <img src={element} alt="" />
-      <h4>{text}</h4>
+    <div className="flex flex-col items-center p-4 rounded-lg ease-[ease] bg-gradient-to-t from-blue-50 to-indigo-50 dark:from-darkTheme-900 dark:to-darkTheme-950 border border-gray-200 dark:border-darkTheme-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      <img
+        src={element}
+        alt={altText || `${text} skill`}
+        className="w-16 h-16 object-contain mb-2"
+      />
+      <h4 className="text-sm font-medium capitalize">{text}</h4>
     </div>
   );
 };

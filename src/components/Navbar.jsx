@@ -29,7 +29,7 @@ const NavBar = () => {
   const navbar = t('navbar', { returnObjects: true });
 
   return (
-    <nav className="">
+    <nav>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-start mx-auto p-4 md:justify-center">
         <button
           data-collapse-toggle="navbar-default"
@@ -39,8 +39,20 @@ const NavBar = () => {
           aria-expanded="false"
         >
           <span className="sr-only">Open main menu</span>
-          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M1 1h15M1 7h15M1 13h15"
+            />
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -54,9 +66,16 @@ const NavBar = () => {
             ))}
             <li className="my-0 flex gap-3">
               {languages?.map((language) => (
-                <li className="dropdown" style={{ cursor: 'pointer' }} onClick={() => i18next.changeLanguage(language.code)} key={language.country_code}>
+                <li
+                  className="dropdown"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => i18next.changeLanguage(language.code)}
+                  key={language.country_code}
+                >
                   <a>
-                    <span className={`flag-icon flag-icon-${language.country_code}`}></span>
+                    <span
+                      className={`flag-icon flag-icon-${language.country_code}`}
+                    ></span>
                   </a>
                 </li>
               ))}

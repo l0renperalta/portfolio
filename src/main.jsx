@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -16,7 +15,16 @@ i18n
   .init({
     fallbackLng: 'en',
     detection: {
-      order: ['cookie', 'htmlTag', 'querystring', 'localStorage', 'sessionStorage', 'navigator', 'path', 'subdomain'],
+      order: [
+        'cookie',
+        'htmlTag',
+        'querystring',
+        'localStorage',
+        'sessionStorage',
+        'navigator',
+        'path',
+        'subdomain',
+      ],
       caches: ['cookie'],
     },
     resources: locales,
@@ -25,9 +33,9 @@ i18n
     },
   });
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
