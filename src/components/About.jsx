@@ -5,7 +5,12 @@ const About = () => {
   const about = t('about', { returnObjects: true });
 
   return (
-    <Container fullHeight centered title={about.title}>
+    <Container
+      fullHeight
+      centered
+      title={about.title}
+      className="mb-24 md:mb-0"
+    >
       <div
         id={about.navbarId}
         className="max-w-4xl scroll-mt-44 md:scroll-mt-80"

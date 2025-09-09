@@ -23,7 +23,12 @@ const Projects = () => {
   };
 
   return (
-    <Container fullHeight centered title={projects.title}>
+    <Container
+      fullHeight
+      centered
+      title={projects.title}
+      className="mb-24 md:mb-0"
+    >
       <div
         id={projects.navbarId}
         className="scroll-mt-40 md:scroll-mt-52 grid grid-cols-1"
