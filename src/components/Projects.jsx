@@ -8,7 +8,6 @@ import Container from './Container';
 const Projects = () => {
   const { t } = useTranslation();
   const projects = t('projects', { returnObjects: true });
-  console.log(`projects ${JSON.stringify(projects)}`);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const images = [project1, project2];
