@@ -37,7 +37,7 @@ export default {
             'Seamless integration with legacy systems',
           ],
           technologies: ['.NET', 'Angular', 'SQL Server'],
-          image: '',
+          images: ['IC.png'],
           link: '',
         },
         {
@@ -52,7 +52,7 @@ export default {
             'Training for end users and complete technical documentation',
           ],
           technologies: ['Python', 'Django', 'PostgreSQL', 'jQuery'],
-          image: '',
+          images: ['saf 1.png'],
           link: '',
         },
         {
@@ -67,7 +67,7 @@ export default {
             'Queue system and automatic retry that improves scraping success rate to 99.5%',
           ],
           technologies: ['Python', 'Next.js', 'AWS', 'Selenium'],
-          image: '',
+          images: ['scrapping.png'],
           link: '',
         },
         {
@@ -82,7 +82,7 @@ export default {
             'Complete integration of all services (frontend, backend, database and AI) in a cloud infrastructure.',
           ],
           technologies: ['React Native', 'Express.js', 'MySQL', 'AWS'],
-          image: '',
+          images: ['project2-4.jpeg', 'project2-2.jpeg'],
           link: '',
         },
         {
@@ -97,7 +97,7 @@ export default {
             'Successful integration between React frontend and Express backend',
           ],
           technologies: ['React', 'Express.js', 'Bootstrap', 'Node.js'],
-          image: '',
+          images: ['googleDrive.png'],
           link: '',
         },
       ],

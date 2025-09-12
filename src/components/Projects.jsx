@@ -1,7 +1,5 @@
-import project1 from '../images/projects/project1.png';
-import project2 from '../images/projects/Screenshot 2023-09-04 191813.png';
 import ImageViewer from 'react-simple-image-viewer';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from './Container';
 
@@ -10,7 +8,6 @@ const Projects = () => {
   const projects = t('projects', { returnObjects: true });
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const images = [project1, project2];
 
   const openImageViewer = useCallback((index) => {
     setCurrentImage(index);
@@ -21,6 +18,31 @@ const Projects = () => {
     setCurrentImage(0);
     setIsViewerOpen(false);
   };
+  const [projectImages, setProjectImages] = useState({});
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const imagesMap = {};
+
+      for (const project of projects.data) {
+        try {
+          // Importamos cada imagen dinámicamente
+          const imageModule = await import(
+            `../images/projects/${project.images[0]}`
+          );
+          imagesMap[project.id] = imageModule.default;
+        } catch (err) {
+          console.error(`Error loading image for project ${project.id}:`, err);
+          // Puedes asignar una imagen por defecto en caso de error
+          imagesMap[project.id] = '/placeholder-image.png';
+        }
+      }
+      console.log(imagesMap);
+      setProjectImages(imagesMap);
+    };
+
+    loadImages();
+  }, []);
 
   return (
     <Container
@@ -107,29 +129,26 @@ const Projects = () => {
             </div>
 
             {/* Imagen */}
-            {/* <div
-              className="lg:w-2/5 flex justify-center items-center cursor-pointer"
-              onClick={() => openImageViewer(0)}
-            >
-              <div className="relative group">
-                <img
-                  src={project1}
-                  alt="Microservices Architecture Project"
-                  className="w-full max-w-md h-auto rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-darkTheme-700"
-                />
-                <div className="absolute inset-0 bg-blue-900 bg-opacity-0 group-hover:bg-opacity-10 rounded-xl transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    👁️ View Image
-                  </span>
+            {project.images.length > 0 && projectImages[project.id] && (
+              <div
+                className="lg:w-2/5 flex justify-center items-center cursor-pointer"
+                onClick={() => openImageViewer(project.id)}
+              >
+                <div className="relative group max-w-full">
+                  <img
+                    src={projectImages[project.id]}
+                    alt="Microservices Architecture Project"
+                    className="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-darkTheme-700 object-contain max-h-96 w-auto"
+                  />
                 </div>
               </div>
-            </div> */}
+            )}
           </div>
         ))}
       </div>
       {isViewerOpen && (
         <ImageViewer
-          src={images}
+          src={projectImages}
           currentIndex={currentImage}
           disableScroll={true}
           closeOnClickOutside={true}
