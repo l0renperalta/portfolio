@@ -20,29 +20,34 @@ const Projects = () => {
   };
   const [projectImages, setProjectImages] = useState({});
 
+  // Usar import.meta.glob para importaciones dinámicas
   useEffect(() => {
     const loadImages = async () => {
       const imagesMap = {};
+      const images = import.meta.glob(
+        '../images/projects/*.{png,jpg,jpeg,svg}'
+      );
 
       for (const project of projects.data) {
         try {
-          // Importamos cada imagen dinámicamente
-          const imageModule = await import(
-            `../images/projects/${project.images[0]}`
-          );
-          imagesMap[project.id] = imageModule.default;
+          const imagePath = `../images/projects/${project.images[0]}`;
+          if (images[imagePath]) {
+            const imageModule = await images[imagePath]();
+            imagesMap[project.id] = imageModule.default;
+          } else {
+            imagesMap[project.id] = '/placeholder-image.png';
+          }
         } catch (err) {
           console.error(`Error loading image for project ${project.id}:`, err);
-          // Puedes asignar una imagen por defecto en caso de error
           imagesMap[project.id] = '/placeholder-image.png';
         }
       }
-      console.log(imagesMap);
+
       setProjectImages(imagesMap);
     };
 
     loadImages();
-  }, []);
+  }, [projects.data]);
 
   return (
     <Container
@@ -137,7 +142,7 @@ const Projects = () => {
                 <div className="relative group max-w-full">
                   <img
                     src={projectImages[project.id]}
-                    alt="Microservices Architecture Project"
+                    alt={project.title}
                     className="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-darkTheme-700 object-contain max-h-96 w-auto"
                   />
                 </div>
