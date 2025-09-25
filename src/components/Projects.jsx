@@ -6,19 +6,32 @@ import Container from './Container';
 const Projects = () => {
   const { t } = useTranslation();
   const projects = t('projects', { returnObjects: true });
-  const [currentImage, setCurrentImage] = useState(0);
+
+  // Estado para el visor de imágenes
   const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Índice de la imagen en su array
+  const [currentProjectImages, setCurrentProjectImages] = useState([]); // Array de imágenes del proyecto actual
 
-  const openImageViewer = useCallback((index) => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
-
-  const closeImageViewer = () => {
-    setCurrentImage(0);
-    setIsViewerOpen(false);
-  };
   const [projectImages, setProjectImages] = useState({});
+
+  // Función para abrir el visor de imágenes
+  const openImageViewer = useCallback(
+    (projectId, imageIndex = 0) => {
+      // Obtiene el array de imágenes del proyecto seleccionado
+      const imagesArray = projectImages[projectId] || [];
+      setCurrentProjectImages(imagesArray);
+      setCurrentImageIndex(imageIndex);
+      setIsViewerOpen(true);
+    },
+    [projectImages]
+  ); // Añade projectImages como dependencia
+
+  // Función para cerrar el visor
+  const closeImageViewer = () => {
+    setIsViewerOpen(false);
+    setCurrentImageIndex(0);
+    setCurrentProjectImages([]);
+  };
 
   // Usar import.meta.glob para importaciones dinámicas
   useEffect(() => {
@@ -29,23 +42,27 @@ const Projects = () => {
       );
 
       for (const project of projects.data) {
+        imagesMap[project.id] = [];
         try {
-          const imagePath = `../images/projects/${project.images[0]}`;
-          if (images[imagePath]) {
-            const imageModule = await images[imagePath]();
-            imagesMap[project.id] = imageModule.default;
-          } else {
-            imagesMap[project.id] = '/placeholder-image.png';
+          for (const imageName of project.images) {
+            const imagePath = `../images/projects/${imageName}`;
+            if (images[imagePath]) {
+              const imageModule = await images[imagePath]();
+              imagesMap[project.id].push(imageModule.default);
+            } else {
+              imagesMap[project.id].push('/placeholder-image.png');
+            }
+          }
+          if (imagesMap[project.id].length === 0) {
+            imagesMap[project.id] = ['/placeholder-image.png'];
           }
         } catch (err) {
           console.error(`Error loading image for project ${project.id}:`, err);
-          imagesMap[project.id] = '/placeholder-image.png';
+          imagesMap[project.id] = ['/placeholder-image.png'];
         }
       }
-
       setProjectImages(imagesMap);
     };
-
     loadImages();
   }, [projects.data]);
 
@@ -113,35 +130,37 @@ const Projects = () => {
               </div>
 
               {/* Botón */}
-              {/* <a href="https://github.com/l0renperalta/google-drive">
-              <button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 flex items-center">
-                <span>View Project</span>
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
-              </button>
-            </a> */}
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noreferrer">
+                  <button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 flex items-center">
+                    <span>{projects.titles[3]}</span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      ></path>
+                    </svg>
+                  </button>
+                </a>
+              )}
             </div>
 
             {/* Imagen */}
             {project.images.length > 0 && projectImages[project.id] && (
               <div
                 className="lg:w-2/5 flex justify-center items-center cursor-pointer"
-                onClick={() => openImageViewer(project.id)}
+                onClick={() => openImageViewer(project.id, 0)}
               >
                 <div className="relative group max-w-full">
                   <img
-                    src={projectImages[project.id]}
+                    src={projectImages[project.id][0]}
                     alt={project.title}
                     className="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-darkTheme-700 object-contain max-h-96 w-auto"
                   />
@@ -153,8 +172,8 @@ const Projects = () => {
       </div>
       {isViewerOpen && (
         <ImageViewer
-          src={projectImages}
-          currentIndex={currentImage}
+          src={currentProjectImages}
+          currentIndex={currentImageIndex}
           disableScroll={true}
           closeOnClickOutside={true}
           onClose={closeImageViewer}

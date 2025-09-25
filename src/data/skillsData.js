@@ -20,6 +20,8 @@ import wordpress from '../images/skills/wordpress.png';
 import java from '../images/skills/java.png';
 import bash from '../images/skills/bash.png';
 import gitlab from '../images/skills/gitlab.png';
+import typescript from '../images/skills/typescript.png';
+import powerbi from '../images/skills/power-bi.png';
 
 export const SKILLS_DATA = [
   { id: 1, name: 'html5', image: html5, altText: 'HTML5 logo' },
@@ -44,4 +46,6 @@ export const SKILLS_DATA = [
   { id: 20, name: 'bootstrap', image: bootstrap, altText: 'Bootstrap logo' },
   { id: 21, name: 'wordpress', image: wordpress, altText: 'WordPress logo' },
   { id: 22, name: 'java', image: java, altText: 'Java logo' },
+  { id: 23, name: 'typescript', image: typescript, altText: 'Typescript logo' },
+  { id: 24, name: 'Power Bi', image: powerbi, altText: 'Power bi logo' },
 ];

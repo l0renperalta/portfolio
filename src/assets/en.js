@@ -82,8 +82,15 @@ export default {
             'Complete integration of all services (frontend, backend, database and AI) in a cloud infrastructure.',
           ],
           technologies: ['React Native', 'Express.js', 'MySQL', 'AWS'],
-          images: ['project2-4.jpeg', 'project2-2.jpeg'],
-          link: '',
+          images: [
+            'project2-1.jpeg',
+            'project2-2.jpeg',
+            'project2-3.jpeg',
+            'project2-4.jpeg',
+            'project2-5.jpeg',
+            'project2-6.jpeg',
+          ],
+          link: 'https://github.com/l0renperalta/casa-andina',
         },
         {
           id: 5,
@@ -98,7 +105,7 @@ export default {
           ],
           technologies: ['React', 'Express.js', 'Bootstrap', 'Node.js'],
           images: ['googleDrive.png'],
-          link: '',
+          link: 'https://github.com/l0renperalta/google-drive',
         },
       ],
       titles: [
