@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useDarkMode from '../hooks/useDarkmode';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
@@ -78,7 +78,7 @@ const NavBar = () => {
                 </a>
               </li>
             ))}
-            <li className="my-2 md:my-0 flex gap-3 items-center py-2 px-3">
+            <li className="flex gap-3 items-center">
               {languages?.map((language) => (
                 <span
                   className="dropdown"
@@ -90,12 +90,12 @@ const NavBar = () => {
                   key={language.country_code}
                 >
                   <span
-                    className={`flag-icon flag-icon-${language.country_code}`}
+                    className={`flag-icon mx-1 flag-icon-${language.country_code}`}
                   ></span>
                 </span>
               ))}
             </li>
-            <li className="my-2 md:my-0 py-2 px-3">
+            <li className="">
               <ToggleTheme />
             </li>
           </ul>

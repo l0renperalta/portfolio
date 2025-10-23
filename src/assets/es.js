@@ -59,10 +59,11 @@ export default {
           id: 3,
           title: 'Plataforma de Web Scraping y Análisis de Datos',
           description:
-            'Contribui con el desarrollo desde cero de una plataforma escalable de extracción y procesamiento de datos que procesa 100+ registros diarios mediante técnicas avanzadas de scraping y procesamiento distribuido.',
+            'Contribui con el desarrollo desde cero de una plataforma escalable de extracción y procesamiento de datos que procesa y clasifica registros diarios mediante técnicas avanzadas de scraping y procesamiento distribuido.',
           archivements: [
+            'Uso de modelos de inteligenia artificial para clasificar los expedientes judiciales automáticamente',
             'Arquitectura serverless en AWS con Lambda y S3',
-            'Implementación de sistema distribuido que procesa 5k+ requests/minuto con Python multihilo',
+            'Implementación de sistema distribuido que procesa 10k+ registros por dia con Python multihilo',
             'Desarrollo de dashboard en tiempo real con Next.js',
             'Sistema de colas y retry automático que mejora la tasa de éxito del scraping al 99.5%',
           ],
